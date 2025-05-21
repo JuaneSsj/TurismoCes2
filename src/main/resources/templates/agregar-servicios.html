@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Agregar Servicios</title>
+</head>
+<body>
+<h2>Agregar Servicios a la Sede</h2>
+
+<p><strong>Ciudad:</strong> <span th:text="${sede.ciudad}"></span></p>
+<p><strong>Dirección:</strong> <span th:text="${sede.direccion}"></span></p>
+
+<form th:action="@{/sede/{id}/agregar-servicios(id=${sede.id})}" method="post">
+  <p>Selecciona servicios complementarios:</p>
+
+  <div th:each="servicio : ${servicios}">
+    <input type="checkbox" th:name="servicioForm.servicioIds"
+           th:value="${servicio.id}" th:id="'servicio_' + ${servicio.id}"/>
+    <label th:for="'servicio_' + ${servicio.id}" th:text="${servicio.nombre} + ' - $' + ${servicio.costo}"></label><br>
+  </div>
+
+  <br>
+  <button type="submit">Guardar servicios</button>
+</form>
+</body>
+</html>

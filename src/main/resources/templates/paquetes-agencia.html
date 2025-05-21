@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Paquetes de la Agencia</title>
+</head>
+<body>
+<h1>Paquetes turísticos de la agencia</h1>
+
+<!-- Mostrar información de la agencia -->
+<div th:if="${agencia != null}">
+    <p><strong>Ciudad de la agencia:</strong> <span th:text="${agencia.ciudad}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${agencia.email}"></span></p>
+    <p><strong>Teléfono:</strong> <span th:text="${agencia.telefono}"></span></p>
+    <p><strong>Tipo:</strong> <span th:text="${agencia.tipoAgencia}"></span></p>
+</div>
+
+<!-- Tabla de paquetes -->
+<h2>Paquetes turísticos</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Duración</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="paquete : ${paquetes}">
+        <td th:text="${paquete.nombre}">Nombre</td>
+        <td th:text="${paquete.descripcion}">Descripción</td>
+        <td th:text="${paquete.precio}">Precio</td>
+        <td th:text="${paquete.duracion}">Duración</td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a href="/agencia/lista">Volver a la lista de agencias</a>
+</body>
+</html>

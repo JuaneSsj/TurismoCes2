@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registrar Agencia y Sede</title>
+    <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+<h1>Registro de Agencia y Sede</h1>
+
+<form th:action="@{/agencia/guardar}" method="post" th:object="${agencia}">
+    <fieldset>
+        <legend>Datos de la Agencia</legend>
+        <label>Ciudad:</label>
+        <input type="text" th:field="*{ciudad}" required /><br/>
+
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required /><br/>
+
+        <label>Teléfono:</label>
+        <input type="text" th:field="*{telefono}" required /><br/>
+
+        <label>Tipo de Agencia:</label>
+        <select th:field="*{tipoAgencia}" required>
+            <option value="NACIONAL">Nacional</option>
+            <option value="INTERNACIONAL">Internacional</option>
+        </select>
+    </fieldset>
+
+    <fieldset th:object="${sede}">
+        <legend>Datos de la Sede</legend>
+        <label>Ciudad:</label>
+        <input type="text" th:field="*{ciudad}" required /><br/>
+
+        <label>Dirección:</label>
+        <input type="text" th:field="*{direccion}" required /><br/>
+
+        <label>Gerente:</label>
+        <input type="text" th:field="*{gerente}" required /><br/>
+
+        <label>Categoría:</label>
+        <select th:field="*{categoriaSede}" required>
+            <option value="PREMIUM">Premium</option>
+            <option value="ESTANDAR">Estándar</option>
+            <option value="ECONOMICA">Económica</option>
+        </select>
+    </fieldset>
+
+    <button type="submit">Guardar</button>
+</form>
+
+</body>
+</html>
