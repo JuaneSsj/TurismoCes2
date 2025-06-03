@@ -1,25 +1,67 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Agregar Servicios</title>
+  <title>Asignar Servicios con Costo</title>
 </head>
 <body>
-<h2>Agregar Servicios a la Sede</h2>
+
+<h2>Asignar Servicios a la Sede</h2>
 
 <p><strong>Ciudad:</strong> <span th:text="${sede.ciudad}"></span></p>
 <p><strong>Dirección:</strong> <span th:text="${sede.direccion}"></span></p>
 
-<form th:action="@{/sede/{id}/agregar-servicios(id=${sede.id})}" method="post">
-  <p>Selecciona servicios complementarios:</p>
-
-  <div th:each="servicio : ${servicios}">
-    <input type="checkbox" th:name="servicioForm.servicioIds"
-           th:value="${servicio.id}" th:id="'servicio_' + ${servicio.id}"/>
-    <label th:for="'servicio_' + ${servicio.id}" th:text="${servicio.nombre} + ' - $' + ${servicio.costo}"></label><br>
-  </div>
-
-  <br>
-  <button type="submit">Guardar servicios</button>
+<form th:action="@{/sede/{id}/asignar-servicios(id=${sede.id})}" method="post" th:object="${servicioCostoForm}">
+  <table>
+    <tr>
+      <th>Seleccionar</th>
+      <th>Servicio</th>
+      <th>Descripción</th>
+      <th>Costo Base</th>
+    </tr>
+    <tr th:each="servicio, iterStat : ${servicios}">
+      <td>
+        <input type="checkbox" th:field="*{serviciosSeleccionados[__${iterStat.index}__].seleccionado}" />
+        <input type="hidden" th:field="*{serviciosSeleccionados[__${iterStat.index}__].servicioId}" th:value="${servicio.id}" />
+      </td>
+      <td th:text="${servicio.nombre}"></td>
+      <td th:text="${servicio.descripcion}"></td>
+      <td th:text="${servicio.costo}"></td>
+    </tr>
+  </table>
+  <button type="submit">Asignar servicios existentes</button>
 </form>
+
+<h3>Crear nuevo servicio</h3>
+<form th:action="@{/sede/{id}/agregar-servicio-manual(id=${sede.id})}" method="post" th:object="${servicioCostoForm}">
+  <label>Nombre: <input type="text" th:field="*{nuevoServicio.nombre}" /></label><br>
+  <label>Descripción: <input type="text" th:field="*{nuevoServicio.descripcion}" /></label><br>
+  <label>Costo Base: <input type="number" step="0.01" th:field="*{nuevoServicio.costo}" /></label><br>
+  <label>Tipo:
+    <select th:field="*{nuevoServicio.tipo}">
+      <option th:each="tipo : ${T(org.example.turismojdbc.model.enums.TipoServicio).values()}"
+              th:value="${tipo}" th:text="${tipo}">Tipo</option>
+    </select>
+  </label><br>
+  <button type="submit">Crear y asignar</button>
+</form>
+
+<!-- NUEVO APARTADO -->
+<h3>Servicios ya asignados a esta sede</h3>
+<table>
+  <tr>
+    <th>Servicio</th>
+    <th>Descripción</th>
+    <th>Costo Asignado</th>
+  </tr>
+  <tr th:each="asignado : ${serviciosAsignados}">
+    <td th:text="${asignado.nombre}">Nombre</td>
+    <td th:text="${asignado.descripcion}">Descripción</td>
+    <td th:text="${asignado.costoPersonalizado}">Costo</td>
+  </tr>
+  <tr th:if="${#lists.isEmpty(serviciosAsignados)}">
+    <td colspan="3">No hay servicios asignados a esta sede.</td>
+  </tr>
+</table>
+
 </body>
 </html>
