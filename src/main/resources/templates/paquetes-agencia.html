@@ -2,6 +2,89 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Paquetes de la Agencia</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
+            margin: 0;
+            padding: 0;
+            color: #222;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #2a4365;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        p {
+            text-align: center;
+            font-size: 1.1em;
+        }
+        table {
+            width: 95%;
+            margin: 30px auto 40px auto;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 16px rgba(44, 62, 80, 0.07);
+            overflow: hidden;
+        }
+        th, td {
+            padding: 14px 12px;
+            text-align: center;
+        }
+        th {
+            background: #2a4365;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #4299e1;
+        }
+        tr:nth-child(even) td {
+            background: #f1f5fa;
+        }
+        tr:hover td {
+            background: #e3eaf6;
+            transition: background 0.2s;
+        }
+        td {
+            color: #2a4365;
+            font-size: 1em;
+        }
+        a {
+            color: #2b6cb0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: block;
+            width: fit-content;
+            margin: 20px auto 0 auto;
+            font-size: 1.1em;
+        }
+        a:hover {
+            color: #4299e1;
+            text-decoration: underline;
+        }
+        @media (max-width: 900px) {
+            table, th, td {
+                font-size: 0.95em;
+            }
+            table {
+                width: 99%;
+            }
+        }
+        @media (max-width: 600px) {
+            table, th, td {
+                font-size: 0.90em;
+                padding: 8px 4px;
+            }
+            h1, h2 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
 </head>
 <body>
 <h1>Paquetes turísticos de la agencia</h1>
@@ -16,7 +99,7 @@
 
 <!-- Tabla de paquetes -->
 <h2>Paquetes turísticos</h2>
-<table border="1">
+<table>
     <thead>
     <tr>
         <th>Nombre</th>
@@ -35,7 +118,6 @@
     </tbody>
 </table>
 
-<br>
 <a href="/agencia/lista">Volver a la lista de agencias</a>
 </body>
 </html>

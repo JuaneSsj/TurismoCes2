@@ -2,7 +2,93 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Registrar Agencia y Sede</title>
-    <link rel="stylesheet" href="/css/estilos.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
+            margin: 0;
+            padding: 0;
+            color: #222;
+        }
+        h1 {
+            text-align: center;
+            color: #2a4365;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            font-size: 2.2em;
+        }
+        form {
+            background: #fff;
+            width: 90%;
+            max-width: 600px;
+            margin: 30px auto 40px auto;
+            padding: 30px 35px 25px 35px;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+            border: 1px solid #e2e8f0;
+        }
+        fieldset {
+            border: 1px solid #4299e1;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 18px 20px 10px 20px;
+        }
+        legend {
+            color: #2a4365;
+            font-weight: 600;
+            font-size: 1.1em;
+            padding: 0 8px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #2a4365;
+        }
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 8px 12px;
+            margin-bottom: 16px;
+            border: 1px solid #bfc9d9;
+            border-radius: 6px;
+            background: #f7fafc;
+            font-size: 1em;
+            transition: border 0.2s;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus {
+            border: 1.5px solid #4299e1;
+            outline: none;
+            background: #fff;
+        }
+        button {
+            background: linear-gradient(90deg, #4299e1 0%, #2b6cb0 100%);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 28px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 2px 8px rgba(66, 153, 225, 0.10);
+            transition: background 0.2s, transform 0.1s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #2b6cb0 0%, #4299e1 100%);
+            transform: translateY(-2px) scale(1.03);
+        }
+        @media (max-width: 700px) {
+            form {
+                width: 98%;
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
 <h1>Registro de Agencia y Sede</h1>
@@ -11,13 +97,13 @@
     <fieldset>
         <legend>Datos de la Agencia</legend>
         <label>Ciudad:</label>
-        <input type="text" th:field="*{ciudad}" required /><br/>
+        <input type="text" th:field="*{ciudad}" required />
 
         <label>Email:</label>
-        <input type="email" th:field="*{email}" required /><br/>
+        <input type="email" th:field="*{email}" required />
 
         <label>Teléfono:</label>
-        <input type="text" th:field="*{telefono}" required /><br/>
+        <input type="text" th:field="*{telefono}" required />
 
         <label>Tipo de Agencia:</label>
         <select th:field="*{tipoAgencia}" required>
@@ -29,13 +115,13 @@
     <fieldset th:object="${sede}">
         <legend>Datos de la Sede</legend>
         <label>Ciudad:</label>
-        <input type="text" th:field="*{ciudad}" required /><br/>
+        <input type="text" th:field="*{ciudad}" required />
 
         <label>Dirección:</label>
-        <input type="text" th:field="*{direccion}" required /><br/>
+        <input type="text" th:field="*{direccion}" required />
 
         <label>Gerente:</label>
-        <input type="text" th:field="*{gerente}" required /><br/>
+        <input type="text" th:field="*{gerente}" required />
 
         <label>Categoría:</label>
         <select th:field="*{categoriaSede}" required>

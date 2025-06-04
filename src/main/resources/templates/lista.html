@@ -1,12 +1,109 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Lista de Agencias y Sedes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
+      margin: 0;
+      padding: 0;
+      color: #222;
+    }
+    h1 {
+      text-align: center;
+      color: #2a4365;
+      margin-top: 40px;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+      font-size: 2.2em;
+    }
+    table {
+      width: 95%;
+      margin: 0 auto 40px auto;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 16px rgba(44, 62, 80, 0.07);
+      overflow: hidden;
+    }
+    th, td {
+      padding: 14px 12px;
+      text-align: center;
+    }
+    th {
+      background: #2a4365;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #4299e1;
+    }
+    tr:nth-child(even) td {
+      background: #f1f5fa;
+    }
+    tr:hover td {
+      background: #e3eaf6;
+      transition: background 0.2s;
+    }
+    td {
+      color: #2a4365;
+      font-size: 1em;
+    }
+    a {
+      color: #2b6cb0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #4299e1;
+      text-decoration: underline;
+    }
+    .register-link {
+      display: block;
+      width: fit-content;
+      margin: 0 auto 40px auto;
+      background: linear-gradient(90deg, #4299e1 0%, #2b6cb0 100%);
+      color: #fff !important;
+      border-radius: 6px;
+      padding: 12px 28px;
+      font-size: 1.1em;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(66, 153, 225, 0.10);
+      transition: background 0.2s, transform 0.1s;
+      text-align: center;
+    }
+    .register-link:hover {
+      background: linear-gradient(90deg, #2b6cb0 0%, #4299e1 100%);
+      transform: translateY(-2px) scale(1.03);
+      color: #fff !important;
+      text-decoration: none;
+    }
+    @media (max-width: 900px) {
+      table, th, td {
+        font-size: 0.95em;
+      }
+      table {
+        width: 99%;
+      }
+    }
+    @media (max-width: 600px) {
+      table, th, td {
+        font-size: 0.90em;
+        padding: 8px 4px;
+      }
+      h1 {
+        font-size: 1.3em;
+      }
+    }
+  </style>
 </head>
 <body>
 <h1>Agencias Registradas</h1>
 
-<table border="1">
+<table>
   <thead>
   <tr>
     <th>Ciudad Agencia</th>
@@ -26,16 +123,13 @@
     <td th:text="${item.agencia.email}">Email</td>
     <td th:text="${item.agencia.telefono}">Teléfono</td>
     <td th:text="${item.agencia.tipoAgencia}">Tipo</td>
-
     <td th:text="${item.sede != null ? item.sede.ciudad : 'Sin sede'}">Ciudad Sede</td>
     <td th:text="${item.sede != null ? item.sede.direccion : '-'}">Dirección</td>
     <td th:text="${item.sede != null ? item.sede.gerente : '-'}">Gerente</td>
     <td th:text="${item.sede != null ? item.sede.categoriaSede : '-'}">Categoría</td>
-
     <td>
       <a th:href="@{'/paquete/nuevo/' + ${item.agencia.id}}">Agregar paquete</a><br/>
       <a th:href="@{'/agencia/' + ${item.agencia.id} + '/paquetes'}">Ver paquetes</a><br/>
-
       <span th:if="${item.sede != null}">
         <a th:href="@{/sede/{id}/agregar-servicios(id=${item.sede.id})}">Agregar Servicios</a>
       </span>
@@ -44,7 +138,6 @@
   </tbody>
 </table>
 
-<br>
-<a href="/agencia/nueva">Registrar nueva agencia</a>
+<a href="/agencia/nueva" class="register-link">Registrar nueva agencia</a>
 </body>
 </html>
