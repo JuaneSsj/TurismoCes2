@@ -93,6 +93,28 @@
                 padding: 10px;
             }
         }
+
+        .volver-btn {
+            background: linear-gradient(90deg, #e2e8f0 0%, #bfc9d9 100%);
+            color: #2a4365 !important;
+            border-radius: 6px;
+            padding: 10px 28px;
+            font-size: 1.1em;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(66, 153, 225, 0.10);
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.1s;
+            display: inline-block;
+            line-height: 1.2;
+        }
+        .volver-btn:hover {
+            background: linear-gradient(90deg, #bfc9d9 0%, #e2e8f0 100%);
+            color: #2b6cb0 !important;
+            transform: translateY(-2px) scale(1.03);
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -128,9 +150,12 @@
         <div th:if="${#fields.hasErrors('duracion')}" th:errors="*{duracion}"></div>
     </div>
 
-    <button type="submit">Guardar Paquete</button>
+    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 18px;">
+        <button type="submit">Guardar Paquete</button>
+        <a href="/agencia/lista" class="volver-btn">Volver a la lista de agencias</a>
+    </div>
 </form>
 
-<a href="/agencia/lista">Volver</a>
+
 </body>
 </html>

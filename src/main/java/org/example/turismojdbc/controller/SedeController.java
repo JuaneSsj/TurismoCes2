@@ -125,4 +125,19 @@ public class SedeController {
 
         return "agregar-servicios";
     }
+
+    @GetMapping("/{id}/ver-servicios")
+    public String verServiciosSede(@PathVariable Long id, Model model) {
+        Optional<Sede> sede = sedeRepository.findById(id);
+        if (sede.isEmpty()) {
+            return "redirect:/error";
+        }
+        // Obtén los servicios asignados (usa tu DTO ServicioAsignadoDTO)
+        List<ServicioAsignadoDTO> serviciosAsignados = sedeServicioRepository.findServiciosBySedeId(id);
+
+        model.addAttribute("sede", sede.get());
+        model.addAttribute("serviciosAsignados", serviciosAsignados);
+
+        return "servicios-sede";
+    }
 }

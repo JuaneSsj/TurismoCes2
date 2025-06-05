@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -51,16 +50,6 @@
       color: #2a4365;
       font-size: 1em;
     }
-    a {
-      color: #2b6cb0;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    a:hover {
-      color: #4299e1;
-      text-decoration: underline;
-    }
     .register-link {
       display: block;
       width: fit-content;
@@ -98,6 +87,50 @@
         font-size: 1.3em;
       }
     }
+
+    .acciones {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+    }
+
+    .btn-accion {
+      display: inline-block;
+      width: 150px; /* ancho fijo para todos */
+      padding: 7px 0;
+      border-radius: 7px;
+      font-size: 0.98em;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+      transition: background 0.2s, color 0.2s, transform 0.1s;
+      border: none;
+      cursor: pointer;
+      line-height: 1.2;
+      margin-bottom: 0;
+    }
+
+    .btn-agregar {
+      background: linear-gradient(90deg, #4299e1 0%, #2b6cb0 100%);
+      color: #fff !important;
+    }
+    .btn-agregar:hover {
+      background: linear-gradient(90deg, #2b6cb0 0%, #4299e1 100%);
+      color: #fff !important;
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .btn-ver {
+      background: linear-gradient(90deg, #38a169 0%, #68d391 100%);
+      color: #fff !important;
+    }
+    .btn-ver:hover {
+      background: linear-gradient(90deg, #68d391 0%, #38a169 100%);
+      color: #fff !important;
+      transform: translateY(-2px) scale(1.03);
+    }
   </style>
 </head>
 <body>
@@ -110,7 +143,7 @@
     <th>Email</th>
     <th>Teléfono</th>
     <th>Tipo</th>
-    <th>Sede Ciudad</th>
+    <th>Ciudad Sede</th>
     <th>Dirección</th>
     <th>Gerente</th>
     <th>Categoría</th>
@@ -128,11 +161,14 @@
     <td th:text="${item.sede != null ? item.sede.gerente : '-'}">Gerente</td>
     <td th:text="${item.sede != null ? item.sede.categoriaSede : '-'}">Categoría</td>
     <td>
-      <a th:href="@{'/paquete/nuevo/' + ${item.agencia.id}}">Agregar paquete</a><br/>
-      <a th:href="@{'/agencia/' + ${item.agencia.id} + '/paquetes'}">Ver paquetes</a><br/>
-      <span th:if="${item.sede != null}">
-        <a th:href="@{/sede/{id}/agregar-servicios(id=${item.sede.id})}">Agregar Servicios</a>
-      </span>
+      <div class="acciones">
+        <a th:href="@{'/paquete/nuevo/' + ${item.agencia.id}}" class="btn-accion btn-agregar">Agregar paquete</a>
+        <a th:href="@{'/agencia/' + ${item.agencia.id} + '/paquetes'}" class="btn-accion btn-ver">Ver paquetes</a>
+        <span th:if="${item.sede != null}">
+          <a th:href="@{/sede/{id}/agregar-servicios(id=${item.sede.id})}" class="btn-accion btn-agregar">Agregar Servicios</a>
+          <a th:href="@{/sede/{id}/ver-servicios(id=${item.sede.id})}" class="btn-accion btn-ver">Ver servicios</a>
+        </span>
+      </div>
     </td>
   </tr>
   </tbody>
