@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bienvenido a Turismo Express</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #e0e7ef 0%, #f8fafc 100%);
+            margin: 0;
+            padding: 0;
+            color: #222;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            margin: 80px auto 0 auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+            padding: 40px 36px 36px 36px;
+            text-align: center;
+        }
+        .icon-viaje {
+            font-size: 3.5em;
+            margin-bottom: 18px;
+            color: #4299e1;
+        }
+        h1 {
+            color: #2a4365;
+            font-size: 2.3em;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+        p {
+            font-size: 1.18em;
+            color: #2a4365;
+            margin-bottom: 36px;
+        }
+        .botones-index {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            align-items: center;
+            margin-top: 18px;
+        }
+        .btn-index {
+            display: inline-block;
+            min-width: 220px;
+            padding: 14px 0;
+            border-radius: 8px;
+            font-size: 1.13em;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, transform 0.1s;
+        }
+        .btn-agencia {
+            background: linear-gradient(90deg, #4299e1 0%, #2b6cb0 100%);
+            color: #fff !important;
+        }
+        .btn-agencia:hover {
+            background: linear-gradient(90deg, #2b6cb0 0%, #4299e1 100%);
+            color: #fff !important;
+            transform: translateY(-2px) scale(1.03);
+        }
+        .btn-lista {
+            background: linear-gradient(90deg, #38a169 0%, #68d391 100%);
+            color: #fff !important;
+        }
+        .btn-lista:hover {
+            background: linear-gradient(90deg, #68d391 0%, #38a169 100%);
+            color: #fff !important;
+            transform: translateY(-2px) scale(1.03);
+        }
+        @media (max-width: 700px) {
+            .container {
+                padding: 18px 6vw 24px 6vw;
+                margin-top: 30px;
+            }
+            .btn-index {
+                min-width: 90vw;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="icon-viaje">✈️🌎</div>
+    <h1>¡Bienvenido a Turismo Express!</h1>
+    <p>
+        Descubre, crea y gestiona agencias de viajes.<br>
+        <span style="color:#4299e1;">¡El mundo te espera!</span> <br>
+        Comienza registrando una nueva agencia o explora las agencias ya existentes.
+    </p>
+    <div class="botones-index">
+        <a href="/agencia/nueva" class="btn-index btn-agencia">Registrar nueva agencia</a>
+        <a href="/agencia/lista" class="btn-index btn-lista">Ver lista de agencias</a>
+    </div>
+</div>
+</body>
+</html>
